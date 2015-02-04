@@ -540,6 +540,9 @@ int cmdline_process_param(char *p, char *value, int need_save, Conf *conf)
 		    conf_set_int(conf, CONF_serparity, SER_PAR_SPACE);
 		    break;
 
+		  case 'F':
+		    conf_set_int(conf, CONF_serflow, SER_FLOW_OFF);
+		    break;
 		  case 'N':
 		    conf_set_int(conf, CONF_serflow, SER_FLOW_NONE);
 		    break;

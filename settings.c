@@ -511,6 +511,7 @@ void save_open_settings(void *sesskey, Conf *conf)
     write_setting_i(sesskey, "BackspaceIsDelete", conf_get_int(conf, CONF_bksp_is_delete));
     write_setting_i(sesskey, "RXVTHomeEnd", conf_get_int(conf, CONF_rxvt_homeend));
     write_setting_i(sesskey, "LinuxFunctionKeys", conf_get_int(conf, CONF_funky_type));
+    write_setting_i(sesskey, "EnterKey", conf_get_int(conf, CONF_entercr));
     write_setting_i(sesskey, "NoApplicationKeys", conf_get_int(conf, CONF_no_applic_k));
     write_setting_i(sesskey, "NoApplicationCursors", conf_get_int(conf, CONF_no_applic_c));
     write_setting_i(sesskey, "NoMouseReporting", conf_get_int(conf, CONF_no_mouse_rep));
@@ -803,6 +804,7 @@ void load_open_settings(void *sesskey, Conf *conf)
     gppi(sesskey, "BackspaceIsDelete", 1, conf, CONF_bksp_is_delete);
     gppi(sesskey, "RXVTHomeEnd", 0, conf, CONF_rxvt_homeend);
     gppi(sesskey, "LinuxFunctionKeys", 0, conf, CONF_funky_type);
+    gppi(sesskey, "EnterKey", 0, conf, CONF_entercr);
     gppi(sesskey, "NoApplicationKeys", 0, conf, CONF_no_applic_k);
     gppi(sesskey, "NoApplicationCursors", 0, conf, CONF_no_applic_c);
     gppi(sesskey, "NoMouseReporting", 0, conf, CONF_no_mouse_rep);

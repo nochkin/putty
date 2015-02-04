@@ -1389,6 +1389,7 @@ void term_copy_stuff_from_conf(Terminal *term)
     term->crhaslf = conf_get_int(term->conf, CONF_crhaslf);
     term->erase_to_scrollback = conf_get_int(term->conf, CONF_erase_to_scrollback);
     term->funky_type = conf_get_int(term->conf, CONF_funky_type);
+    term->entercr = conf_get_int(term->conf, CONF_entercr);
     term->lfhascr = conf_get_int(term->conf, CONF_lfhascr);
     term->logflush = conf_get_int(term->conf, CONF_logflush);
     term->logtype = conf_get_int(term->conf, CONF_logtype);

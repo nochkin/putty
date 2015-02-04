@@ -3906,6 +3906,7 @@ static int TranslateKey(UINT message, WPARAM wParam, LPARAM lParam,
     unsigned char *p = output;
     static int alt_sum = 0;
     int funky_type = conf_get_int(conf, CONF_funky_type);
+    int entercr = conf_get_int(conf, CONF_entercr);
     int no_applic_k = conf_get_int(conf, CONF_no_applic_k);
     int ctrlaltkeys = conf_get_int(conf, CONF_ctrlaltkeys);
     int nethack_keypad = conf_get_int(conf, CONF_nethack_keypad);
@@ -4296,6 +4297,28 @@ static int TranslateKey(UINT message, WPARAM wParam, LPARAM lParam,
 		    p += sprintf((char *) p, "\x1BO%c", xkey);
 		return p - output;
 	    }
+	}
+
+	if (wParam == VK_RETURN) {
+	    switch (entercr) {
+		    case ENTERCR_CR:
+			    *p++ = VK_RETURN;
+			    break;
+		    case ENTERCR_CRLF:
+			    *p++ = VK_RETURN;
+			    *p++ = 0x0a;
+			    *p++ = 0;
+			    break;
+		    case ENTERCR_LFCR:
+			    *p++ = 0x0a;
+			    *p++ = VK_RETURN;
+			    *p++ = 0;
+			    break;
+		    case ENTERCR_LF:
+			    *p++ = 0x0a;
+			    *p++ = 0;
+			    break;
+		}
 	}
 
 	if (wParam == VK_BACK && shift_state == 0) {	/* Backspace */

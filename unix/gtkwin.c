@@ -534,7 +534,7 @@ gint key_event(GtkWidget *widget, GdkEventKey *event, gpointer data)
     char output[256];
     wchar_t ucsoutput[2];
     int ucsval, start, end, special, output_charset, use_ucsoutput;
-    int nethack_mode, app_keypad_mode;
+    int nethack_mode, app_keypad_mode, entercr_mode;
 
     /* Remember the timestamp. */
     inst->input_event_time = event->time;
@@ -1142,6 +1142,31 @@ gint key_event(GtkWidget *widget, GdkEventKey *event, gpointer data)
 		end = 1 + sprintf(output+1, "\x1B[%d~", code);
 		use_ucsoutput = FALSE;
 		goto done;
+	    }
+	}
+
+	/* Handle CR, CR+LF, LF+CR, LF combinations */
+	if (event->keyval == GDK_Return || event->keyval == GDK_KP_Enter) {
+	    entercr_mode = conf_get_int(inst->conf, CONF_entercr);
+	    switch (entercr_mode) {
+		case ENTERCR_CR:
+		    output[0] = 0x0d;
+		    end = 1;
+		    break;
+		case ENTERCR_CRLF:
+		    output[0] = 0x0d;
+		    output[1] = 0x0a;
+		    end = 2;
+		    break;
+		case ENTERCR_LFCR:
+		    output[0] = 0x0a;
+		    output[1] = 0x0d;
+		    end = 2;
+		    break;
+		case ENTERCR_LF:
+		    output[0] = 0x0a;
+		    end = 1;
+		    break;
 	    }
 	}
 

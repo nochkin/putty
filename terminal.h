@@ -302,6 +302,7 @@ struct terminal_tag {
     int crhaslf;
     int erase_to_scrollback;
     int funky_type;
+    int entercr;
     int lfhascr;
     int logflush;
     int logtype;

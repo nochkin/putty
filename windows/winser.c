@@ -153,6 +153,11 @@ static const char *serial_configure(Serial serial, HANDLE serport, Conf *conf)
 	sfree(msg);
 
 	switch (conf_get_int(conf, CONF_serflow)) {
+	  case SER_FLOW_OFF:
+	    dcb.fDtrControl = DTR_CONTROL_DISABLE;
+	    dcb.fRtsControl = RTS_CONTROL_DISABLE;
+	    str = "Off";
+	    break;
 	  case SER_FLOW_NONE:
 	    str = "no";
 	    break;

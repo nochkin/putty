@@ -1569,6 +1569,12 @@ void setup_config_box(struct controlbox *b, int midsession,
 		      I(CONF_funky_type),
 		      "ESC[n~", I(0), "Linux", I(1), "Xterm R6", I(2),
 		      "VT400", I(3), "VT100+", I(4), "SCO", I(5), NULL);
+    ctrl_radiobuttons(s, "The Enter key", 'h', 4,
+		      HELPCTX(keyboard_entercr),
+		      conf_radiobutton_handler,
+		      I(CONF_entercr),
+		      "CR", I(0), "CR+LF", I(1), "LF+CR", I(2),
+		      "LF", I(3), NULL);
 
     s = ctrl_getset(b, "Terminal/Keyboard", "appkeypad",
 		    "Application keypad settings:");

@@ -338,6 +338,14 @@ enum {
 };
 
 enum {
+	/* Enter key types (CONF_entercr) */
+	ENTERCR_CR,
+	ENTERCR_CRLF,
+	ENTERCR_LFCR,
+	ENTERCR_LF
+};
+
+enum {
     FQ_DEFAULT, FQ_ANTIALIASED, FQ_NONANTIALIASED, FQ_CLEARTYPE
 };
 
@@ -346,7 +354,7 @@ enum {
 };
 
 enum {
-    SER_FLOW_NONE, SER_FLOW_XONXOFF, SER_FLOW_RTSCTS, SER_FLOW_DSRDTR
+    SER_FLOW_NONE, SER_FLOW_XONXOFF, SER_FLOW_RTSCTS, SER_FLOW_DSRDTR, SER_FLOW_OFF
 };
 
 /*
@@ -724,6 +732,7 @@ void cleanup_exit(int);
     X(INT, NONE, bksp_is_delete) \
     X(INT, NONE, rxvt_homeend) \
     X(INT, NONE, funky_type) \
+    X(INT, NONE, entercr) \
     X(INT, NONE, no_applic_c) /* totally disable app cursor keys */ \
     X(INT, NONE, no_applic_k) /* totally disable app keypad */ \
     X(INT, NONE, no_mouse_rep) /* totally disable mouse reporting */ \

@@ -78,6 +78,7 @@ static void serial_flow_handler(union control *ctrl, void *dlg,
 	const char *name;
 	int val;
     } flows[] = {
+	{"Off", SER_FLOW_OFF},
 	{"None", SER_FLOW_NONE},
 	{"XON/XOFF", SER_FLOW_XONXOFF},
 	{"RTS/CTS", SER_FLOW_RTSCTS},
