@@ -4303,21 +4303,18 @@ static int TranslateKey(UINT message, WPARAM wParam, LPARAM lParam,
 	    switch (entercr) {
 		    case ENTERCR_CR:
 			    *p++ = VK_RETURN;
-			    break;
+			    return p - output;
 		    case ENTERCR_CRLF:
 			    *p++ = VK_RETURN;
 			    *p++ = 0x0a;
-			    *p++ = 0;
-			    break;
+			    return p - output;
 		    case ENTERCR_LFCR:
 			    *p++ = 0x0a;
 			    *p++ = VK_RETURN;
-			    *p++ = 0;
-			    break;
+			    return p - output;
 		    case ENTERCR_LF:
 			    *p++ = 0x0a;
-			    *p++ = 0;
-			    break;
+			    return p - output;
 		}
 	}
 
